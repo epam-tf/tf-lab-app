@@ -8,6 +8,11 @@ on:
 jobs:
   ci-workflow:
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
 
     steps:
     - name: Checkout code
@@ -43,7 +48,8 @@ jobs:
       env:
         FRONTEND_URL: "http://localhost"
         JWT_SECRET: "randomstring"
-        MONGODB_URI: "http://localhost"
+        MONGODB_URI: "mongodb://localhost:27017/dummyjson-test-db"
+        MONGODB_DB_NAME: "dummyjson-test-db"
 
     - name: Start ZAP
       run: |
