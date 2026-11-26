@@ -64,9 +64,9 @@ jobs:
         zap-cli -p 8090 status -t 120
         zap-cli -p 8090 -v quick-scan \
         --spider \
-        "http://localhost:3123/"
+        "http://localhost:8888/"
 
     - name: Stop App and ZAP
       run: |
         zap-cli -p 8090 shutdown
-        kill $(lsof -t -i:3123)
+        kill $(lsof -t -i:8888)
